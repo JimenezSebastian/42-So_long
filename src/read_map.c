@@ -1,15 +1,5 @@
 #include "../includes/so_long.h"
 
-void ft_parse(t_game *game, char *ber)
-{
-    char **grid;
-    
-    grid = ft_read_map(ber);
-    if (!grid)
-        ft_exit(game, "Error mapa\n");
-    ft_validate_map(grid, ber);
-}
-
 char **ft_read_map(char *ber)
 {
     int fd;
@@ -18,22 +8,25 @@ char **ft_read_map(char *ber)
 
     fd = open(ber, O_RDONLY);
     if (fd < 0)
-        return (NULL);
+        return (NULL); // liberacion atras
     mapstr = ft_mapstr(fd);
+    if (!mapstr)
+        return (NULL); // liberacion atras
     map = ft_split(mapstr, '\n');
+    free(mapstr);
     if  (!map)
-        return (NULL);
-    else 
-        return (map);
+        return (NULL); // liberacion atras
+    return (map);
 }
 
 char *ft_mapstr(int fd)
 {
-    char *mapstr;
     char *temp;
-    
-    temp = NULL;
+    char *mapstr;
+
     mapstr = get_next_line(fd);
+    if (!mapstr)
+        return(NULL);
     while (1)
     {
         temp = get_next_line(fd);
