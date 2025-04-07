@@ -12,6 +12,8 @@ int	ft_handle_keypress(int key, t_game *game)
 		ft_move_player(LEFT, game);
 	else if (key == KEY_D || key == ARROW_RIGHT)
 		ft_move_player(RIGHT, game);
+    ft_render_map(game);
+    ft_check_win_condition(game);
 	return (0);
 }
 
@@ -47,19 +49,16 @@ void	ft_move_player(int direction, t_game *game)
 	// Actualiza la posición del jugador en la struct map para la logica del juego.
 	game->map->player_x = new_x;
 	game->map->player_y = new_y;
-	game->moves++;
+	
+    game->moves++;
 
-    ft_render_map(game);
-	// Comprueba si el jugador ha ganado
-	ft_check_win_condition(game);
-    
 }
 
 
 void ft_check_win_condition(t_game *game)
 {
     t_map *map = game->map;
-    
+
     if (map->collectibles == 0 &&
         map->cpy[map->player_y][map->player_x] == 'E')
         ft_exit(game, "Has ganado!\n");

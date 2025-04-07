@@ -12,27 +12,27 @@ void ft_init_window(t_game *game)
         ft_exit(game, "Error creando la ventana", 1);
 }
 
-void ft_load_textures(t_game *game)
+void ft_load_textures(t_game *game) 
 {
-    game->textures->wall = mlx_xpm_file_to_image(game->mlx, "assets/wall.xpm", 
-                                &game->textures->width, &game->textures->height);
-    if (!game->textures->wall)
-        ft_exit(game, "Error cargando textura de pared (assets/wall.xpm)\n", 1);
-    
-    game->textures->collectible = mlx_xpm_file_to_image(game->mlx, "assets/collectible.xpm", 
-                                &game->textures->width, &game->textures->height);
-    if (!game->textures->collectible)
-        ft_exit(game, "Error cargando textura de coleccionable (assets/collectible.xpm)\n", 1);
-    
-    game->textures->player = mlx_xpm_file_to_image(game->mlx, "assets/player.xpm", 
-                                &game->textures->width, &game->textures->height);
-    if (!game->textures->player)
-        ft_exit(game, "Error cargando textura del jugador (assets/player.xpm)\n", 1);
-    
-    game->textures->exit = mlx_xpm_file_to_image(game->mlx, "assets/exit.xpm", 
-                                &game->textures->width, &game->textures->height);
-    if (!game->textures->exit)
-        ft_exit(game, "Error cargando textura de salida (assets/exit.xpm)\n", 1);
+    t_textures *texture;
+
+    texture = game->textures;
+    texture->wall = mlx_xpm_file_to_image(game->mlx, "assets/wall.xpm",
+                                &texture->width, &texture->height);
+    if (!texture->wall)
+        ft_exit(game, "Error cargando textura\n", 1);
+    texture->collectible = mlx_xpm_file_to_image(game->mlx, "assets/collectible.xpm",
+                                &texture->width, &texture->height);
+    if (!texture->collectible)
+        ft_exit(game, "Error cargando textura\n", 1);
+    texture->player = mlx_xpm_file_to_image(game->mlx, "assets/player.xpm",
+                                &texture->width, &texture->height);
+    if (!texture->player)
+        ft_exit(game, "Error cargando textura\n", 1);
+    texture->exit = mlx_xpm_file_to_image(game->mlx, "assets/exit.xpm",
+                                &texture->width, &texture->height);
+    if (!texture->exit)
+        ft_exit(game, "Error cargando textura\n", 1);
 }
 
 void ft_render_map(t_game *game)

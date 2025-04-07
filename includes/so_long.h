@@ -58,40 +58,39 @@ typedef struct t_game
     int moves;
 } t_game;
 
-// MODULES PRIMERA CAPA DESPUES DEL MAIN 
+// MODULES: PRIMERA CAPA DESPUES DEL MAIN   // Ejecutado
 void ft_alloc_structs(t_game **game);
 void ft_parse(t_game *game, char *ber);
 void ft_graphic_server(t_game *game);
 
-// ALLOC
+// ALLOC -  // Ejecutado
 void ft_alloc_structs(t_game **game);
 void ft_init_game(t_game *game);
 void ft_init_map(t_map *map);
 void ft_init_textures(t_textures *textures);
 
 // PARSE 
-// READ MAP
+// READ // arreglar gnl
 char **ft_read_map(char *file);
 char *ft_mapstr(int fd);
-char	*ft_temp(char *line, char *token);
-// VALIDATION
+char	*ft_join(char *original, char *new);
+// VALIDATION falta floodfill
 int ft_validate_map(char **grid);
 int ft_is_surrounded_by_walls(char **map);
 int ft_is_rectangular(char **map);
 void ft_validate_characters(char **map, int *collectibles, int *start, int *exit);
 
-
-// GRAPHIC SERVER
+// GRAPHICS  // Ejecutado
 void ft_init_window(t_game *game);
 void ft_load_textures(t_game *game);
 void ft_render_map(t_game *game);
 
-// HANDLER logic
+// HANDLER_LOGIC - redibujar la salida. 
 int ft_handle_keypress(int key, t_game *game);
 void ft_move_player(int direction, t_game *game);
 void ft_check_win_condition (t_game *game);
 
-// EXIT 
+// EXIT // Ejecutado - destroy ?
 void ft_free_all(t_game *game);
 void ft_free_textures(t_textures *textures);
 void ft_free_map(t_map *map);

@@ -1,23 +1,5 @@
 #include "../includes/so_long.h"
 
-void ft_alloc_structs(t_game **game)
-{
-    *game = malloc(sizeof(t_game));
-    if (!(*game))
-        ft_exit(NULL, "Error: malloc game\n", 1);
-    ft_init_game(*game);
-
-    (*game)->map = malloc(sizeof(t_map));
-    if (!(*game)->map)
-        ft_exit(*game, "Error: malloc map\n", 1);
-    ft_init_map((*game)->map);
-
-    (*game)->textures = malloc(sizeof(t_textures));
-    if (!(*game)->textures)
-        ft_exit(*game, "Error: malloc textures\n", 1);
-    ft_init_textures((*game)->textures);
-}
-
 void ft_init_game(t_game *game)
 {
     if (!game)
