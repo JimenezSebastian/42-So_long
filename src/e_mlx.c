@@ -12,7 +12,6 @@ void ft_init_window(t_game *game)
     game->mlx = mlx_init();
     if (game->mlx == NULL)
         ft_exit(game, "Error inicializando MiniLibX", 1);
-    
     game->window = mlx_new_window(game->mlx, game->map->width * TILE_SIZE,
                                     game->map->height * TILE_SIZE, "So Long");
     if (game->window == NULL)

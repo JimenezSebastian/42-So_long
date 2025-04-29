@@ -1,6 +1,6 @@
 #include "../includes/so_long.h"
 
-char **ft_read_map(char *ber)
+char **ft_read_map(t_game *game,char *ber)
 {
     int fd;
     char *mapstr;
@@ -8,14 +8,14 @@ char **ft_read_map(char *ber)
 
     fd = open(ber, O_RDONLY);
     if (fd < 0)
-        return (NULL); // liberacion atras
+        ft_exit(game, "Error: Abrir .ber\n", 1);
     mapstr = ft_mapstr(fd);
     if (!mapstr)
-        return (NULL); // liberacion atras
+        ft_exit(game, "Error: Extraer mapa\n", 1);
     map = ft_split(mapstr, '\n');
     free(mapstr);
     if  (!map)
-        return (NULL); // liberacion atras
+        ft_exit(game, "Error: Extraer mapa\n", 1);
     return (map);
 }
 

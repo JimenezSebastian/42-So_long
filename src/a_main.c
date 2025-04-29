@@ -11,7 +11,6 @@ void ft_play(char *ber)
     mlx_hook(game->window, 17, 0, ft_handle_keypress, game); //  f handler
     mlx_loop(game->mlx);
 
-    // ft_exit(game, "Success", 0); quiza no sea necesario por la funcion win condition.
 }
 
 int main(int argc, char **argv)
