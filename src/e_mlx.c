@@ -1,5 +1,12 @@
 #include "../includes/so_long.h"
 
+void ft_mlx(t_game *game)
+{
+    ft_init_window(game);
+    ft_load_textures(game);
+    ft_render_map(game);
+}
+
 void ft_init_window(t_game *game)
 {
     game->mlx = mlx_init();
@@ -35,7 +42,7 @@ void ft_load_textures(t_game *game)
         ft_exit(game, "Error cargando textura\n", 1);
 }
 
-void ft_render_map(t_game *game)
+void  ft_render_map(t_game *game)
 {
     int x;
     int y;
@@ -59,4 +66,3 @@ void ft_render_map(t_game *game)
         y++;
     }
 }
-

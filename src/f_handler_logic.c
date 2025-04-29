@@ -54,7 +54,6 @@ void	ft_move_player(int direction, t_game *game)
 
 }
 
-
 void ft_check_win_condition(t_game *game)
 {
     t_map *map = game->map;

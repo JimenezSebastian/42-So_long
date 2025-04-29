@@ -1,6 +1,7 @@
 ARQUITECTURA DEL PROYECTO
 
 
+
 VERIFICAR EXISTENCIA DE ARGV 2 
 LEER MAPA
 VALIDAR 
@@ -13,7 +14,12 @@ CREAR LA CONEXION - LEVANTAR LA VENTANA - CARGAR ASSETS - RE
 
 EXIT ESQUEMA DE LIMPIEZA.
 
+
+
 🧩 free_all(t_game *game)
    ├── free_textures(game->textures)
    ├── free_map(game->map)
    └── free(game)
+
+Notas (Recordar):
+Gnl? str -> split
