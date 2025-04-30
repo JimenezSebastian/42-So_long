@@ -9,13 +9,10 @@ int ft_validate_map(char **grid)
     collectibles = 0;
     start = 0;
     exit = 0;
-
     if (ft_is_rectangular(grid))
         return (0);
-
     if (!ft_is_surrounded_by_walls(grid))
         return (0);
-
     ft_validate_characters(grid, &collectibles, &start, &exit);
     if (collectibles < 1 || start != 1 || exit != 1)
         return (0);
@@ -28,19 +25,17 @@ int ft_is_surrounded_by_walls(char **grid)
     int cols;
     int i;
     
+    i = 0;
     rows = 0;
     while (grid[rows] != NULL)
         rows++;
-    cols = strlen(grid[0]);
-    
-    i = 0;
+    cols = ft_strlen(grid[0]); 
     while (i < cols)
     {
         if (grid[0][i] != '1' || grid[rows - 1][i] != '1')
             return (0);
         i++;
     }
-    
     i = 0;
     while (i < rows)
     {

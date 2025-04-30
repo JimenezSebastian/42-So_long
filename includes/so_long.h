@@ -58,12 +58,29 @@ typedef struct t_game
     int moves;
 } t_game;
 
-// MODULES: PRIMERA CAPA DESPUES DEL MAIN   // Ejecutado
+
+// Main Play
+ft_alloc_structs(&game);
+ft_read_map(game, ber);
+ft_validate_map(game->map); 
+ft_mlx(game);
+mlx_hook(game->window, 17, 0, ft_handle_keypress, game);
+mlx_loop(game->mlx);
+
+// ALLOC STRUCTS
+
+// READ
+// VALIDATE
+// MLX
+// HANDLER LOGIC
+// 
+
+
 void ft_alloc_structs(t_game **game);
 void ft_parse(t_game *game, char *ber);
 void ft_graphic_server(t_game *game);
 
-// ALLOC -  // Ejecutado
+
 void ft_alloc_structs(t_game **game);
 void ft_init_game(t_game *game);
 void ft_init_map(t_map *map);

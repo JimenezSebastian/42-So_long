@@ -24,8 +24,6 @@ void	ft_move_player(int direction, t_game *game)
 
 	new_x = game->map->player_x;
 	new_y = game->map->player_y;
-
-	// Aplicar desplazamiento según la dirección en un pseudo mov 
 	if (direction == UP)
 		new_y--;
 	else if (direction == DOWN)
@@ -34,24 +32,16 @@ void	ft_move_player(int direction, t_game *game)
 		new_x--;
 	else if (direction == RIGHT)
 		new_x++;
-
-	// Validar que el nuevo movimiento no sea hacia una pared
 	if (game->map->grid[new_y][new_x] == '1')
 		return;
-
-	// Si hay un coleccionable, lo recoge
 	if (game->map->grid[new_y][new_x] == 'C')
 	{
 		game->map->grid[new_y][new_x] = '0';
 		game->map->collectibles--;
 	}
-
-	// Actualiza la posición del jugador en la struct map para la logica del juego.
 	game->map->player_x = new_x;
 	game->map->player_y = new_y;
-	
     game->moves++;
-
 }
 
 void ft_check_win_condition(t_game *game)
@@ -60,5 +50,5 @@ void ft_check_win_condition(t_game *game)
 
     if (map->collectibles == 0 &&
         map->cpy[map->player_y][map->player_x] == 'E')
-        ft_exit(game, "Has ganado!\n");
+        ft_exit(game, "Has ganado!\n", 1);
 }

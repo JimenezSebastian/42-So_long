@@ -16,7 +16,7 @@ char **ft_read_map(t_game *game,char *ber)
     free(mapstr);
     if  (!map)
         ft_exit(game, "Error: Extraer mapa\n", 1);
-    return (map);
+    game->map->grid = map;
 }
 
 char *ft_mapstr(int fd)
@@ -31,7 +31,7 @@ char *ft_mapstr(int fd)
     {
         temp = get_next_line(fd);
         if (temp)
-            mapstr = ft_join(mapstr, temp);
+            mapstr = ft_temp(mapstr, temp);
         else
             break;
     }
@@ -39,15 +39,3 @@ char *ft_mapstr(int fd)
     return (mapstr);
 }
 
-char	*ft_join(char *original, char *new)
-{
-	char	*new_line;
-
-	new_line = ft_strjoin(original, new);
-	free (original);
-	free (new);
-    if (!new_line)
-        return (NULL);
-    else
-	    return (new_line);
-}
