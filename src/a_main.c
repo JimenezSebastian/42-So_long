@@ -1,12 +1,34 @@
 #include "../includes/so_long.h"
 
+void print_array(char **arr)
+{
+    int i = 0;
+    while (arr[i] != NULL)
+    {
+        printf("%s\n", arr[i]);
+        i++;
+    }
+}
+void print_str(char *str)
+{
+    int i = 0;
+    while (str[i] != '\0')
+    {
+        write(1, &str[i], 1);
+        i++;
+    }
+    write(1, "\n", 1);
+}
+
+
 void ft_play(char *ber)
 {
     t_game *game;
 
     ft_alloc_structs(&game);
     ft_read_map(game, ber);
-    ft_validate_map(game->map); // pasar game para liberacion atomica..
+    ft_validate_map(game);
+    fill_map_data(game->map, game->map->grid);
     ft_mlx(game);
     mlx_hook(game->window, 17, 0, ft_handle_keypress, game);
     mlx_loop(game->mlx);

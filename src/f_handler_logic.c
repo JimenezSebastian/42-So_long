@@ -3,7 +3,7 @@
 int	ft_handle_keypress(int key, t_game *game)
 {
 	if (key == KEY_ESC)
-		ft_exit(game, "Salida con ESC\n");
+		ft_exit(game, "Salida con ESC\n", 1);
 	else if (key == KEY_W || key == ARROW_UP)
 		ft_move_player(UP, game);
 	else if (key == KEY_S || key == ARROW_DOWN)
@@ -46,9 +46,10 @@ void	ft_move_player(int direction, t_game *game)
 
 void ft_check_win_condition(t_game *game)
 {
-    t_map *map = game->map;
+    t_map *map;
 
+	map = game->map;
     if (map->collectibles == 0 &&
-        map->cpy[map->player_y][map->player_x] == 'E')
+        map->grid[map->player_y][map->player_x] == 'E')
         ft_exit(game, "Has ganado!\n", 1);
 }

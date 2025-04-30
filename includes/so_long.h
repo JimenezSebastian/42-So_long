@@ -27,13 +27,13 @@
 # define LEFT         2
 # define RIGHT        3
 
-
 typedef struct t_textures
 {
     void *wall;
     void *collectible;
     void *player;
     void *exit;
+    void *floor;
     int width;
     int height;
 } t_textures;
@@ -53,67 +53,52 @@ typedef struct t_game
 {
     void *mlx;
     void *window;
+    int moves;
     t_map *map;
     t_textures *textures;
-    int moves;
 } t_game;
 
-
-// Main Play
-ft_alloc_structs(&game);
-ft_read_map(game, ber);
-ft_validate_map(game->map); 
-ft_mlx(game);
-mlx_hook(game->window, 17, 0, ft_handle_keypress, game);
-mlx_loop(game->mlx);
-
 // ALLOC STRUCTS
-
-// READ
-// VALIDATE
-// MLX
-// HANDLER LOGIC
-// 
-
-
-void ft_alloc_structs(t_game **game);
-void ft_parse(t_game *game, char *ber);
-void ft_graphic_server(t_game *game);
-
-
 void ft_alloc_structs(t_game **game);
 void ft_init_game(t_game *game);
 void ft_init_map(t_map *map);
 void ft_init_textures(t_textures *textures);
 
-// PARSE 
-// READ // arreglar gnl
-char **ft_read_map(char *file);
+// READ
+void ft_read_map(t_game *game, char *ber);
 char *ft_mapstr(int fd);
-char	*ft_join(char *original, char *new);
-// VALIDATION falta floodfill
-int ft_validate_map(char **grid);
-int ft_is_surrounded_by_walls(char **map);
-int ft_is_rectangular(char **map);
-void ft_validate_characters(char **map, int *collectibles, int *start, int *exit);
 
-// GRAPHICS  // Ejecutado
+// VALIDATE
+void ft_validate_map(t_game *game);
+int ft_is_rectangular(char **map);
+int ft_is_surrounded_by_walls(char **map);
+int ft_validate_characters(char **map, int *collectibles, int *start, int *exit);
+
+// MLX
+void ft_mlx(t_game *game);
 void ft_init_window(t_game *game);
 void ft_load_textures(t_game *game);
 void ft_render_map(t_game *game);
 
-// HANDLER_LOGIC - redibujar la salida. 
+// HANDLER LOGIC
 int ft_handle_keypress(int key, t_game *game);
 void ft_move_player(int direction, t_game *game);
 void ft_check_win_condition (t_game *game);
 
-// EXIT // Ejecutado - destroy ?
+// UTILS
+char	*ft_temp(char *line, char *token);
+char	*ft_token(int fd);
+char	*ft_concate_nation(int fd);
+char	*get_next_line(int fd);
+void	fill_map_data(t_map *map, char **grid);
+
+// EXIT - Destroy
+void ft_exit(t_game *game, char *message, int state);
 void ft_free_all(t_game *game);
 void ft_free_textures(t_textures *textures);
 void ft_free_map(t_map *map);
 void ft_free_2d(char **grid);
 
-// extras 
-char	*get_next_line(int fd);
-
+void print_str(char *str);
+void print_array(char **arr);
 #endif

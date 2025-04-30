@@ -29,7 +29,11 @@ void ft_load_textures(t_game *game)
         ft_exit(game, "Error cargando textura\n", 1);
     texture->collectible = mlx_xpm_file_to_image(game->mlx, "assets/collectible.xpm",
                                 &texture->width, &texture->height);
-    if (!texture->collectible)
+     if (!texture->collectible)
+        ft_exit(game, "Error cargando textura\n", 1);     
+    texture->floor = mlx_xpm_file_to_image(game->mlx, "assets/floor.xpm",
+                                &texture->width, &texture->height);
+     if (!texture->floor)
         ft_exit(game, "Error cargando textura\n", 1);
     texture->player = mlx_xpm_file_to_image(game->mlx, "assets/player.xpm",
                                 &texture->width, &texture->height);
@@ -60,6 +64,8 @@ void  ft_render_map(t_game *game)
                 mlx_put_image_to_window(game->mlx, game->window, game->textures->player, x * TILE_SIZE, y * TILE_SIZE);
             else if (game->map->grid[y][x] == 'E')
                 mlx_put_image_to_window(game->mlx, game->window, game->textures->exit, x * TILE_SIZE, y * TILE_SIZE);
+            else if (game->map->grid[y][x] == '0')
+                mlx_put_image_to_window(game->mlx, game->window, game->textures->floor, x * TILE_SIZE, y * TILE_SIZE);
             x++;
         }
         y++;

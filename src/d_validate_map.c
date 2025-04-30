@@ -1,28 +1,46 @@
 #include "../includes/so_long.h"
 
-int ft_validate_map(char **grid)
+void ft_validate_map(t_game *game)
 {
+    char **grid;
     int collectibles;
     int start;
     int exit;
     
+    grid = game->map->grid;
     collectibles = 0;
     start = 0;
     exit = 0;
     if (ft_is_rectangular(grid))
-        return (0);
-    if (!ft_is_surrounded_by_walls(grid))
-        return (0);
-    ft_validate_characters(grid, &collectibles, &start, &exit);
+        ft_exit(game, "Error: Validation1", 1);
+    if (ft_is_surrounded_by_walls(grid))
+        ft_exit(game, "Error: Validation2", 1);
+    if (ft_validate_characters(grid, &collectibles, &start, &exit))
+        ft_exit(game, "Error: Validation3", 1);
     if (collectibles < 1 || start != 1 || exit != 1)
-        return (0);
-    return (1);
+        ft_exit(game, "Error: Validation4", 1);
+}
+
+int ft_is_rectangular(char **grid)
+{
+    int len;
+    int i;
+    
+    i = 1;
+    len = ft_strlen(grid[0]);
+    while (grid[i] != NULL)
+    {
+        if ((int)ft_strlen(grid[i]) != len)
+            return (1);
+        i++;
+    }
+    return (0);
 }
 
 int ft_is_surrounded_by_walls(char **grid)
 {
-    int rows;
-    int cols;
+    int rows; // filas 
+    int cols; // columnas 
     int i;
     
     i = 0;
@@ -33,36 +51,20 @@ int ft_is_surrounded_by_walls(char **grid)
     while (i < cols)
     {
         if (grid[0][i] != '1' || grid[rows - 1][i] != '1')
-            return (0);
+            return (1);
         i++;
     }
     i = 0;
     while (i < rows)
     {
         if (grid[i][0] != '1' || grid[i][cols - 1] != '1')
-            return (0);
-        i++;
-    }
-    return (1);
-}
-
-int ft_is_rectangular(char **grid)
-{
-    int len;
-    int i;
-    
-    i = 1;
-    len = strlen(grid[0]);
-    while (grid[i] != NULL)
-    {
-        if ((int)strlen(grid[i]) != len)
             return (1);
         i++;
     }
     return (0);
 }
 
-void ft_validate_characters(char **grid, int *collectibles, int *start, int *exit)
+int ft_validate_characters(char **grid, int *collectibles, int *start, int *exit)
 {
     int i;
     int j;
@@ -75,18 +77,16 @@ void ft_validate_characters(char **grid, int *collectibles, int *start, int *exi
         {
             if (grid[i][j] != '0' && grid[i][j] != '1' &&
                 grid[i][j] != 'C' && grid[i][j] != 'P' && grid[i][j] != 'E')
-                return (NULL);
-                
+                return (1);
             if (grid[i][j] == 'C')
                 (*collectibles)++;
-
             if (grid[i][j] == 'P')
                 (*start)++;
-
             if (grid[i][j] == 'E')
                 (*exit)++;
             j++;
         }
         i++;
     }
+    return(0);
 }

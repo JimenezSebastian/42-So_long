@@ -1,6 +1,6 @@
 #include "../includes/so_long.h"
 
-char **ft_read_map(t_game *game,char *ber)
+void ft_read_map(t_game *game, char *ber)
 {
     int fd;
     char *mapstr;
