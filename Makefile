@@ -1,14 +1,14 @@
 NAME = so_long
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
-SRCS = src/a_main.c src/b_alloc_structs.c src/c_read_map.c src/d_validate_map.c src/e_mlx.c src/f_handler_logic.c src/g_utils.c src/z_exit.c
+SRCS = src/a_main.c src/b_alloc_structs.c src/c_read_map.c src/d_validate_map.c src/e_mlx.c src/f_handler_logic.c src/g_utils.c src/z_exit.c src/cc_reachable_all.c
 OBJS = $(SRCS:.c=.o)
 
 MLX_DIR = mlx
 MLX_LIB = $(MLX_DIR)/libmlx.a
-MLX_FLAGS = -L$(MLX_DIR) -Lmlx -lmlx -lXext -lX11 -lm -lbsd
+MLX_FLAGS = -L$(MLX_DIR) -Lmlx -lmlx -lXext -lX11 -lm -lbsd 
 
 LIBFT_DIR = libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a

@@ -11,35 +11,38 @@ void ft_free_all(t_game *game)
 {
     if (!game)
         return;
+    if (game->window)
+        mlx_destroy_window(game->mlx, game->window);
+    ft_free_textures(game);
     if (game->mlx)
     {
+        mlx_destroy_display(game->mlx);
         free(game->mlx);
-        // Destruccion del bridge
     }
-    if (game->window)
-    {
-        free(game->window);
-        // Destruccion de ventanas
-    }
-    ft_free_textures(game->textures);
     ft_free_map(game->map);
     free(game);
 }
 
-void ft_free_textures(t_textures *textures)
+void	ft_free_textures(t_game *game)
 {
-    if (!textures)
-        return;
-    if (textures->wall)
-        free(textures->wall);
-    if (textures->collectible)
-        free(textures->collectible);
-    if (textures->player)
-        free(textures->player);
-    if (textures->exit)
-        free(textures->exit);
-    free(textures);
+	t_textures	*tx;
+
+	if (!game->textures)
+		return;
+	tx = game->textures;
+	if (tx->wall)
+		mlx_destroy_image(game->mlx, tx->wall);
+	if (tx->collectible)
+		mlx_destroy_image(game->mlx, tx->collectible);
+	if (tx->player)
+		mlx_destroy_image(game->mlx, tx->player);
+	if (tx->exit)
+		mlx_destroy_image(game->mlx, tx->exit);
+	if (tx->floor)
+		mlx_destroy_image(game->mlx, tx->floor);
+	free(tx);
 }
+
 
 void ft_free_map(t_map *map)
 {
@@ -47,8 +50,12 @@ void ft_free_map(t_map *map)
         return;
     if (map->grid)
         ft_free_2d(map->grid);
-    if (map->cpy)
-        ft_free_2d(map->cpy);
+    if (map->cpy1)
+        ft_free_2d(map->cpy1);
+    if (map->cpy2)
+        ft_free_2d(map->cpy2);
+    if (map->cpy_static)
+        ft_free_2d(map->cpy_static);
     free(map);
 }
 

@@ -20,18 +20,29 @@ void print_str(char *str)
     write(1, "\n", 1);
 }
 
+int	ft_close_window(void *param)
+{
+	t_game *game;
+
+	game = (t_game *)param;
+	ft_exit(game, "Cerrado con la X\n", 0);
+	return (0);
+}
+
 
 void ft_play(char *ber)
 {
     t_game *game;
-
+    
     ft_alloc_structs(&game);
     ft_read_map(game, ber);
+    ft_reacheble_all(game);
     ft_validate_map(game);
-    fill_map_data(game->map, game->map->grid);
     ft_mlx(game);
-    mlx_hook(game->window, 17, 0, ft_handle_keypress, game);
+    mlx_hook(game->window, 2, 1L << 0, ft_handle_keypress, game);
+    mlx_hook(game->window, 17, 0, ft_close_window, game);
     mlx_loop(game->mlx);
+
 }
 
 int main(int argc, char **argv)

@@ -41,7 +41,9 @@ typedef struct t_textures
 typedef struct t_map
 {
     char **grid;
-    char **cpy;
+    char **cpy1;
+    char **cpy2;
+    char **cpy_static;
     int width;
     int height; 
     int collectibles;
@@ -67,6 +69,10 @@ void ft_init_textures(t_textures *textures);
 // READ
 void ft_read_map(t_game *game, char *ber);
 char *ft_mapstr(int fd);
+char	**ft_copy_grid(char **grid);
+void	fill_map_data(t_map *map, char **grid);
+
+void ft_cpys(t_game *game);
 
 // VALIDATE
 void ft_validate_map(t_game *game);
@@ -90,14 +96,22 @@ char	*ft_temp(char *line, char *token);
 char	*ft_token(int fd);
 char	*ft_concate_nation(int fd);
 char	*get_next_line(int fd);
-void	fill_map_data(t_map *map, char **grid);
+
 
 // EXIT - Destroy
 void ft_exit(t_game *game, char *message, int state);
 void ft_free_all(t_game *game);
-void ft_free_textures(t_textures *textures);
+void	ft_free_textures(t_game *game);
 void ft_free_map(t_map *map);
 void ft_free_2d(char **grid);
+
+// ZZ new
+int		ft_has_reached_exit(char **grid);
+void    ft_reacheble_all(t_game *game);
+void	ft_flood_fill(int x, int y, char **grid);
+void	ft_flood_fill_to_exit(int x, int y, char **grid);
+int		ft_has_unreachable_collectibles(char **grid);
+
 
 void print_str(char *str);
 void print_array(char **arr);

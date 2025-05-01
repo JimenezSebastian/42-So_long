@@ -36,7 +36,9 @@ void ft_init_map(t_map *map)
         return;
 
     map->grid = NULL;
-    map->cpy = NULL;
+    map->cpy1 = NULL;
+    map->cpy2 = NULL;
+    map->cpy_static = NULL;
     map->width = 0;
     map->height = 0;
     map->collectibles = 0;
