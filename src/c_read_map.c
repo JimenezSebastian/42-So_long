@@ -90,27 +90,10 @@ void	fill_map_data(t_map *map, char **grid)
 	int		y;
 	int		x;
 
-	map->grid = grid;
-	map->height = 0;
-	map->width = 0;
-	map->collectibles = 0;
-	map->player_x = -1;
-	map->player_y = -1;
-
 	while (grid[map->height])
 		map->height++;
 	if (map->height > 0)
 		map->width = ft_strlen(grid[0]);
-	/*
-	//map->cpy1 = malloc(sizeof(char *) * (map->height + 1)); // que pijas es esto;
-	y = 0;
-	while (y < map->height)
-	{
-		map->cpy1[y] = ft_strdup(grid[y]);
-		y++;
-	}
-	map->cpy1[y] = NULL;
-	*/
 	y = 0;
 	while (y < map->height)
 	{

@@ -22,16 +22,7 @@ void	ft_move_player(int direction, t_game *game)
 	int	new_x;
 	int	new_y;
 
-	new_x = game->map->player_x;
-	new_y = game->map->player_y;
-	if (direction == UP)
-		new_y--;
-	else if (direction == DOWN)
-		new_y++;
-	else if (direction == LEFT)
-		new_x--;
-	else if (direction == RIGHT)
-		new_x++;
+	ft_calculate_new_position(direction, &new_x, &new_y, game);
 	if (game->map->grid[new_y][new_x] == '1' || 
 		(game->map->grid[new_y][new_x] == 'E' && game->map->collectibles != 0))
 		return;
@@ -40,14 +31,37 @@ void	ft_move_player(int direction, t_game *game)
 		game->map->grid[new_y][new_x] = '0';
 		game->map->collectibles--;
 	}
-	game->map->grid[game->map->player_y][game->map->player_x] = '0';// 1
-	game->map->player_x = new_x;// 2
-	game->map->player_y = new_y; // 2
-	game->map->grid[new_y][new_x] = 'P'; //3
-    game->moves++;
+	game->map->grid[game->map->player_y][game->map->player_x] = '0';
+	game->map->player_x = new_x;
+	game->map->player_y = new_y;
+	game->map->grid[new_y][new_x] = 'P';
+	game->moves++;
 	ft_putstr_fd("Movimientos: ", 1);
 	ft_putnbr_fd(game->moves, 1);
 	write(1, "\n", 1);
+}
+
+void	ft_calculate_new_position(int direction, int *new_x, int *new_y, t_game *game)
+{
+	*new_x = game->map->player_x;
+	*new_y = game->map->player_y;
+	if (direction == UP)
+		(*new_y)--;
+	else if (direction == DOWN)
+		(*new_y)++;
+	else if (direction == LEFT)
+		(*new_x)--;
+	else if (direction == RIGHT)
+		(*new_x)++;
+}
+
+int	ft_close_window(void *param)
+{
+	t_game *game;
+
+	game = (t_game *)param;
+	ft_exit(game, "Cerrado con la X\n", 0);
+	return (0);
 }
 
 void ft_check_win_condition(t_game *game)

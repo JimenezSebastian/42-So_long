@@ -1,35 +1,5 @@
 #include "../includes/so_long.h"
 
-void print_array(char **arr)
-{
-    int i = 0;
-    while (arr[i] != NULL)
-    {
-        printf("%s\n", arr[i]);
-        i++;
-    }
-}
-void print_str(char *str)
-{
-    int i = 0;
-    while (str[i] != '\0')
-    {
-        write(1, &str[i], 1);
-        i++;
-    }
-    write(1, "\n", 1);
-}
-
-int	ft_close_window(void *param)
-{
-	t_game *game;
-
-	game = (t_game *)param;
-	ft_exit(game, "Cerrado con la X\n", 0);
-	return (0);
-}
-
-
 void ft_play(char *ber)
 {
     t_game *game;
