@@ -6,7 +6,7 @@
 /*   By: almejia- < almejia-@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:57:09 by almejia-          #+#    #+#             */
-/*   Updated: 2025/05/02 17:31:58 by almejia-         ###   ########.fr       */
+/*   Updated: 2025/05/02 17:34:21 by almejia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,3 @@ int	ft_is_valid_filename(const char *filename)
 		return (0);
 	return (1);
 }
-

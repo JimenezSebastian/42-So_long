@@ -6,7 +6,7 @@
 /*   By: almejia- < almejia-@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:56:53 by almejia-          #+#    #+#             */
-/*   Updated: 2025/05/02 16:57:46 by almejia-         ###   ########.fr       */
+/*   Updated: 2025/05/02 17:34:11 by almejia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	ft_is_surrounded_by_walls(char **grid)
 
 	i = 0;
 	rows = 0;
-	
 	while (grid[rows] != NULL)
 		rows++;
 	cols = ft_strlen(grid[0]);

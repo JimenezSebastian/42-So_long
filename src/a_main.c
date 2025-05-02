@@ -6,7 +6,7 @@
 /*   By: almejia- < almejia-@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:56:40 by almejia-          #+#    #+#             */
-/*   Updated: 2025/05/02 17:25:10 by almejia-         ###   ########.fr       */
+/*   Updated: 2025/05/02 17:34:03 by almejia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_play(char *ber)
 {
 	t_game	*game;
-	
-	if(ft_is_valid_filename(ber) == 0)
+
+	if (ft_is_valid_filename(ber) == 0)
 		ft_exit(NULL, "Error\n Extension", 1);
 	ft_alloc_structs(&game);
 	ft_read_map(game, ber);
