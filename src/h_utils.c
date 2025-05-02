@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   h_utils.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: almejia- < almejia-@student.42madrid.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/02 13:57:09 by almejia-          #+#    #+#             */
+/*   Updated: 2025/05/02 17:31:58 by almejia-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
 
 char	*ft_temp(char *line, char *token)
@@ -8,8 +20,8 @@ char	*ft_temp(char *line, char *token)
 	new_line = ft_strjoin(line, token);
 	if (!new_line)
 		return (NULL);
-	free (line);
-	free (token);
+	free(line);
+	free(token);
 	return (new_line);
 }
 
@@ -78,3 +90,26 @@ char	*get_next_line(int fd)
 		return (NULL);
 	return (line);
 }
+
+int	ft_is_valid_filename(const char *filename)
+{
+	int		len;
+	char	*name;
+
+	if (!filename)
+		return (0);
+	len = ft_strlen(filename);
+	if (len <= 4)
+		return (0);
+	if (ft_strncmp(filename + len - 4, ".ber", 4) != 0)
+		return (0);
+	name = ft_strrchr(filename, '/');
+	if (name)
+		name++;
+	else
+		name = (char *)filename;
+	if (ft_strlen(name) <= 4)
+		return (0);
+	return (1);
+}
+

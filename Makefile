@@ -1,9 +1,9 @@
 NAME = so_long
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g3
 
-SRCS = src/a_main.c src/b_alloc_structs.c src/c_read_map.c src/d_validate_map.c src/e_mlx.c src/f_handler_logic.c src/g_utils.c src/z_exit.c src/cc_reachable_all.c
+SRCS = src/a_main.c src/b_alloc_structs.c src/c_read_map.c src/d_reachable_all.c src/e_validate_map.c src/f_mlx.c src/g_handler_logic.c src/h_utils.c src/i_exit.c 
 OBJS = $(SRCS:.c=.o)
 
 MLX_DIR = mlx
